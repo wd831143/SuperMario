@@ -33,7 +33,7 @@ public class MyFrame extends JFrame implements KeyListener,Runnable {
         //向窗口对象添加键盘监听
         this.addKeyListener(this);
         //设置窗口名称
-        this.setTitle("超级马里奥");
+        this.setTitle("莫方杰的超级玛丽游戏设计");
         //初始化图片
         StaticValue.init();
         //初始化马里奥对象
@@ -84,6 +84,7 @@ public class MyFrame extends JFrame implements KeyListener,Runnable {
     }
 
     public static void main(String[] args){
+        //TODO:web检查登录，如果验证登录成功则进入游戏，否则要求登录
         MyFrame myFrame = new MyFrame();
     }
 

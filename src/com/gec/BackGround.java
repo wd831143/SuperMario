@@ -34,6 +34,9 @@ public class BackGround {
         this.sort = sort;
         this.flag = flag;
 
+//        if (flag){
+//            bgImage = StaticValue.bg;
+//        }
         if (flag){
             bgImage = StaticValue.bg2;
         }else {
@@ -51,23 +54,9 @@ public class BackGround {
                 }
             }
 
-            //绘制砖块A
-            for (int i = 120; i <=150 ; i+=30) {
-                obstacleList.add(new Obstacle(i,300,7,this));
-            }
-
             //绘制砖块B-F
-            for (int i = 300; i <=570 ; i+=30) {
-                if (i==360||i==390||i==480||i==510||i==540){
-                    obstacleList.add(new Obstacle(i,300,7,this));
-                }else{
-                    obstacleList.add(new Obstacle(i,300,0,this));
-                }
-            }
-
-            //绘制砖块G
-            for (int i = 420; i <= 450; i+=30) {
-                obstacleList.add(new Obstacle(i,240,7,this));
+            for (int i = 200; i <=500 ; i+=30) {
+                obstacleList.add(new Obstacle(i,300,0,this));
             }
 
             //绘制水管
@@ -124,25 +113,18 @@ public class BackGround {
 
             //绘制砖块BEG
             for (int i = 270; i <=330 ; i+=30) {
-                if (i==270||i==330){
                     obstacleList.add(new Obstacle(i,360,0,this));
-                }else {
-                    obstacleList.add(new Obstacle(i,360,7,this));
-                }
             }
+
             //绘制砖块ADFHI
             for (int i = 240; i <=360 ; i+=30) {
-                if (i==240||i==360){
                     obstacleList.add(new Obstacle(i,390,0,this));
-                }else {
-                    obstacleList.add(new Obstacle(i,390,7,this));
-                }
             }
             //绘制妨碍1砖块
             obstacleList.add(new Obstacle(240,300,0,this));
             //绘制空1-4砖块
             for (int i = 360; i <=540 ; i+=60) {
-                obstacleList.add(new Obstacle(i,270,7,this));
+                obstacleList.add(new Obstacle(i,300,0,this));//270
             }
 
             //绘制1.1蘑菇敌人

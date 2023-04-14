@@ -1,8 +1,18 @@
 package com.gec;
 
 import java.awt.image.BufferedImage;
-
 public class Mario implements Runnable{
+    public enum MarioMoveState{
+        run_right,
+        run_left,
+        jump_right,
+        jump_left
+    }
+    public enum MarioBodyState{
+        Normal,
+        Big,
+        diaodiao
+    }
     //用于表示横纵坐标
     private int x;
     private int y;
