@@ -85,7 +85,8 @@ public class MyFrame extends JFrame implements KeyListener,Runnable {
 
     public static void main(String[] args){
         //TODO:web检查登录，如果验证登录成功则进入游戏，否则要求登录
-        MyFrame myFrame = new MyFrame();
+        LoginJFrame loginWnd = new LoginJFrame();
+        
     }
 
     @Override
