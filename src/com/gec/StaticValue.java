@@ -118,7 +118,5 @@ public class StaticValue {
                 e.printStackTrace();
             }
         }
-
-        //
     }
 }

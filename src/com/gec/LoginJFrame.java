@@ -90,7 +90,7 @@ public class LoginJFrame extends JFrame  implements ActionListener {
 		regist.setBounds(250, 250, 80, 40);
 		setJButton(regist);
 		Login.addActionListener(this);
-		
+		regist.addActionListener(this);
 		
 		
 		
@@ -143,7 +143,7 @@ public class LoginJFrame extends JFrame  implements ActionListener {
 					JOptionPane.showMessageDialog(null, "验证码错误,请重新输入!","提示消息",JOptionPane.WARNING_MESSAGE);
 					clear();
 				}else if(isValidCodeRight()) {
-					if(loginSystem.LoginByAccountPassword(jt_usename.getText(), jPasswordField.getPassword().toString())) {
+					if(loginSystem.LoginByAccountPassword(jt_usename.getText(), jPasswordField.getText().toString())) {
 						//TODO:将登录成功的Token保存
 						loginSystem.LoginSuccess("token");
 						JOptionPane.showMessageDialog(null, "登录成功!","提示消息",JOptionPane.WARNING_MESSAGE);
@@ -163,9 +163,32 @@ public class LoginJFrame extends JFrame  implements ActionListener {
 					}
 				}
 			}
-			
-			}
-			
+		}
+        if(e.getActionCommand() == "注册") {
+            if(jt_code.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "请输入验证码!","提示消息",JOptionPane.WARNING_MESSAGE);
+            }else {
+                if(!isValidCodeRight()) {
+                    JOptionPane.showMessageDialog(null, "验证码错误,请重新输入!","提示消息",JOptionPane.WARNING_MESSAGE);
+                    clear();
+                }else if(isValidCodeRight()) {
+                    if(loginSystem.RegisterAccount(jt_usename.getText(), jPasswordField.getText().toString())) {
+                        JOptionPane.showMessageDialog(null, "注册成功!","提示消息",JOptionPane.WARNING_MESSAGE);
+                        clear();
+                        Close();
+                    }else if(jt_usename.getText().isEmpty()&&jPasswordField.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "请输入用户名和密码!","提示消息",JOptionPane.WARNING_MESSAGE);
+                        clear();
+                    }else if(jt_usename.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "请输入用户名!","提示消息",JOptionPane.WARNING_MESSAGE);
+                        clear();
+                    }else if(jPasswordField.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "请输入密码!","提示消息",JOptionPane.WARNING_MESSAGE);
+                        clear();
+                    }
+                }
+            }
+        }
 	}  
 	private void Close(){
 		this.setVisible(false);

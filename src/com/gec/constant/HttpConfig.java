@@ -5,4 +5,5 @@ public class HttpConfig {
     //public static final String ServerPort = "8080";
 
     public  static  final  String UserLogin = ServerAddress + "/login";
+    public  static  final  String RegisterLogin = ServerAddress + "/register";
 }

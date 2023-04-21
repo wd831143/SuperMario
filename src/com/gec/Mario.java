@@ -36,7 +36,8 @@ public class Mario implements Runnable{
     private  boolean isOK;
     //mario死亡
     private boolean isDeath = false;
-
+    //表示积分
+    private int score =0;
 
     public Mario(){}
     public Mario(int x,int y){
@@ -178,6 +179,7 @@ public class Mario implements Runnable{
                             (ob.getX() > this.x - 30 && ob.getX() < this.x + 25)) {
                         if (ob.getType() == 0) {
                             backGround.getObstacleList().remove(ob);
+                            score+=100;
                         }
                         upTime = 0;
                     }
@@ -203,6 +205,7 @@ public class Mario implements Runnable{
                             e.getX() + 35 >=this.x)){
                         if (e.getType()==1){
                             e.death();
+                            score += 200;
                             upTime = 3;
                             ySpeed = -10;
                         }else if (e.getType()==2){
@@ -320,5 +323,9 @@ public class Mario implements Runnable{
 
     public void setDeath(boolean death) {
         isDeath = death;
+    }
+
+    public int getScore() {
+        return score;
     }
 }

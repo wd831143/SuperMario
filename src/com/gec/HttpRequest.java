@@ -158,32 +158,24 @@ public class HttpRequest {
 			// 从连接中读取响应信息
 			String msg = "";
 			int code = httpURLConnection.getResponseCode();
+            BufferedReader reader;
 			if (code == 200) {
-				BufferedReader reader = new BufferedReader(
+				reader = new BufferedReader(
 						new InputStreamReader(httpURLConnection.getInputStream()));
-				String line;
-				while ((line = reader.readLine()) != null) {
-					msg += line + "\n";
-				}
-				reader.close();
-
-				result.IsError = false;
-				result.ErrorMas = "Succes";
-				result.Data = msg;
-				return  result;
+                result.IsError = false;
 			}else{
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(httpURLConnection.getInputStream()));
-				String line;
-				while ((line = reader.readLine()) != null) {
-					msg += line + "\n";
-				}
-				reader.close();
-				System.out.println("请求错误:"+msg);
-				result.IsError = true;
-				result.ErrorMas = "请求错误";
-				return  result;
+                reader = new BufferedReader(
+						new InputStreamReader(httpURLConnection.getErrorStream()));
+                result.IsError = true;
 			}
+            String line;
+            while ((line = reader.readLine()) != null) {
+                msg += line + "\n";
+            }
+            System.out.println("请求结果:"+msg);
+            reader.close();
+            result.Data = msg;
+            return  result;
 			// 处理结果
 		} catch (IOException e) {
 			result.IsError = true;

@@ -79,6 +79,12 @@ public class MyFrame extends JFrame implements KeyListener,Runnable {
         graphics.drawImage(nowBg.getGan(),500,220,this);
         //绘制马里奥
         graphics.drawImage(mario.getShow(),mario.getX(),mario.getY(),this);
+        //加分数
+        Color c = graphics.getColor();
+        graphics.setColor(Color.BLACK);
+        graphics.setFont(new Font("宋体",Font.BOLD,20));
+        graphics.drawString("Core:"+mario.getScore(),50,80);
+        graphics.setColor(c);
         //绘制背景--->缓冲区--->窗口
         g.drawImage(offScreenImage,0,0,this);
     }
@@ -108,6 +114,10 @@ public class MyFrame extends JFrame implements KeyListener,Runnable {
         if (e.getKeyCode()==38){
             mario.jump();
         }
+        //暂停
+//        if(e.getKeyCode()==32){
+//            mario
+//        }
     }
 
     @Override
