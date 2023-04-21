@@ -30,6 +30,7 @@ public class LoginSystem {
                     return true;
                 }
                 else {
+                    LoginFaile(result.Data);
                     return false;
                 }
             }

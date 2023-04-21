@@ -17,9 +17,10 @@ public class MyFrame extends JFrame implements KeyListener,Runnable {
     //马里奥对象
     private Mario mario = new Mario();
     //定义一个线程对象，用于马里奥的运动
-    private Thread thread = new Thread(this);
+    private Thread thread;
 
     public MyFrame(){
+        thread = new Thread(this);
         //窗口大小:800,600
         this.setSize(800,600);
         //设置窗口居中
@@ -49,7 +50,6 @@ public class MyFrame extends JFrame implements KeyListener,Runnable {
         repaint();
         thread.start();
     }
-
     @Override
     public void paint(Graphics g) {
         if (offScreenImage==null){
@@ -147,11 +147,13 @@ public class MyFrame extends JFrame implements KeyListener,Runnable {
                 //判断mario是否死亡
                 if (mario.isDeath()){
                     JOptionPane.showMessageDialog(this,"马里奥死亡");
+
                     System.exit(0);
                 }
                 //判断游戏是否结束
                 if (mario.isOK()){
                     JOptionPane.showMessageDialog(this,"恭喜你成功通关");
+
                     System.exit(0);
                 }
             } catch (InterruptedException e) {
