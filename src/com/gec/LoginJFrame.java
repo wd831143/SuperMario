@@ -42,7 +42,7 @@ public class LoginJFrame extends JFrame  implements ActionListener {
 	Icon password = new ImageIcon(path+"4.png");
 
 	private LoginSystem loginSystem;
-	
+	private  Boolean IsLoginDone = false;
 
 	private ValidCode vcode = new ValidCode();
 	public LoginJFrame() {
@@ -148,7 +148,7 @@ public class LoginJFrame extends JFrame  implements ActionListener {
 						loginSystem.LoginSuccess("token");
 						JOptionPane.showMessageDialog(null, "登录成功!","提示消息",JOptionPane.WARNING_MESSAGE);
 						
-						MyFrame gameStart = new MyFrame();
+						LoginDone();
 						clear();
 						Close();
 					}else if(jt_usename.getText().isEmpty()&&jPasswordField.getText().isEmpty()) {
@@ -223,4 +223,11 @@ public class LoginJFrame extends JFrame  implements ActionListener {
 		else
 			return false;
 	}
+
+	public Boolean IsLoginDone(){
+        return IsLoginDone;
+    }
+	public void LoginDone(){
+        IsLoginDone = true;
+    }
 }

@@ -38,7 +38,23 @@ public class Mario implements Runnable{
     private boolean isDeath = false;
     //表示积分
     private int score =0;
-
+    public void finalize(){
+        show = null;
+        //定义一个背景对象，获取障碍物信息
+        backGround = new BackGround();
+        //实现马里奥动作
+        thread = null;
+        //表示马里奥上升时间
+        upTime = 0;
+        //马里奥与门口
+        boolean isOK;
+        //mario死亡
+        isDeath = false;
+        x = 0;
+        isOK = false;
+        y = 0;
+        thread.stop();
+    }
     public Mario(){}
     public Mario(int x,int y){
         this.x=x;
@@ -48,7 +64,21 @@ public class Mario implements Runnable{
         thread = new Thread(this);
         thread.start();
     }
-
+    public void cancelPlatfromLogin(){
+        if (this.thread == null){
+            return;
+        }
+        if(!this.thread.isAlive()) {
+            this.thread=null;
+            return;
+        }
+        try {
+            this.thread.interrupt();
+            this.thread = null;
+        } catch (Exception ex) {
+            System.out.println("中断登录线程...非预期错误:"+ex);
+        }
+    }
     //mario 死亡方法
     public void death(){
         isDeath = true;

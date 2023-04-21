@@ -18,6 +18,21 @@ public class MyFrame extends JFrame implements KeyListener,Runnable {
     private Mario mario = new Mario();
     //定义一个线程对象，用于马里奥的运动
     private Thread thread;
+    private Boolean EndGame = false;
+    public void Init(){
+        mario = new Mario(10,355);
+        allBg.clear();
+        for (int i = 1; i <=3 ; i++) {
+            allBg.add(new BackGround(i,i==3?true:false));
+        }
+        nowBg = allBg.get(0);
+        mario.setBackGround(nowBg);
+
+        //绘制图像
+        repaint();
+        this.setVisible(true);
+        EndGame = false;
+    }
 
     public MyFrame(){
         thread = new Thread(this);
@@ -44,7 +59,7 @@ public class MyFrame extends JFrame implements KeyListener,Runnable {
             allBg.add(new BackGround(i,i==3?true:false));
         }
         //将第一个场景设置为当前场景
-        nowBg = allBg.get(0);
+        nowBg = allBg.get(2);
         mario.setBackGround(nowBg);
         //绘制图像
         repaint();
@@ -89,11 +104,11 @@ public class MyFrame extends JFrame implements KeyListener,Runnable {
         g.drawImage(offScreenImage,0,0,this);
     }
 
-    public static void main(String[] args){
-        //TODO:web检查登录，如果验证登录成功则进入游戏，否则要求登录
-        LoginJFrame loginWnd = new LoginJFrame();
-        
-    }
+//    public static void main(String[] args){
+//        //TODO:web检查登录，如果验证登录成功则进入游戏，否则要求登录
+//        LoginJFrame loginWnd = new LoginJFrame();
+//
+//    }
 
     @Override
     public void keyTyped(KeyEvent e){
@@ -134,7 +149,7 @@ public class MyFrame extends JFrame implements KeyListener,Runnable {
 
     @Override
     public void run() {
-        while (true){
+        while (!EndGame){
             repaint();
             try {
                 Thread.sleep(50);
@@ -148,17 +163,25 @@ public class MyFrame extends JFrame implements KeyListener,Runnable {
                 if (mario.isDeath()){
                     JOptionPane.showMessageDialog(this,"马里奥死亡");
 
-                    System.exit(0);
+                    EndGame();
                 }
                 //判断游戏是否结束
                 if (mario.isOK()){
                     JOptionPane.showMessageDialog(this,"恭喜你成功通关");
 
-                    System.exit(0);
+                    EndGame();
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+    }
+    public Boolean IsEndGame(){
+        return  EndGame;
+    }
+    private void EndGame(){
+        EndGame = true;
+        this.setVisible(false);
+        Init();
     }
 }

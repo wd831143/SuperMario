@@ -21,6 +21,8 @@ public class Enemy implements Runnable{
     //定义当前图片的状态
     private int image_type = 0;
 
+    public void Init(){
+    }
     //构造函数
         //蘑菇
     public Enemy(int x,int y,boolean face_to,int type,BackGround bg){
