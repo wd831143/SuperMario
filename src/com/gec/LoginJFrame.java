@@ -143,7 +143,7 @@ public class LoginJFrame extends JFrame  implements ActionListener {
 					JOptionPane.showMessageDialog(null, "验证码错误,请重新输入!","提示消息",JOptionPane.WARNING_MESSAGE);
 					clear();
 				}else if(isValidCodeRight()) {
-					if(!loginSystem.LoginByAccountPassword(jt_usename.getText(), jPasswordField.getPassword().toString())) {
+					if(loginSystem.LoginByAccountPassword(jt_usename.getText(), jPasswordField.getPassword().toString())) {
 						//TODO:将登录成功的Token保存
 						loginSystem.LoginSuccess("token");
 						JOptionPane.showMessageDialog(null, "登录成功!","提示消息",JOptionPane.WARNING_MESSAGE);
@@ -159,9 +159,6 @@ public class LoginJFrame extends JFrame  implements ActionListener {
 						clear();
 					}else if(jPasswordField.getText().isEmpty()) {
 						JOptionPane.showMessageDialog(null, "请输入密码!","提示消息",JOptionPane.WARNING_MESSAGE);
-						clear();
-					}else {
-						JOptionPane.showMessageDialog(null, "用户名或者密码错误！\n请重新输入","提示消息",JOptionPane.ERROR_MESSAGE);
 						clear();
 					}
 				}
@@ -180,13 +177,19 @@ public class LoginJFrame extends JFrame  implements ActionListener {
 		jPasswordField.setText("");
 		jt_code.setText("");
 	}
+
 	//验证码的确认
 	public boolean isValidCodeRight() {
 		if(jt_code == null) {
 			return false;
 		}else if(vcode == null) {
 			return true;
-		}else if(vcode.getCode() .equals(jt_code.getText())) {
+		}
+		String code = vcode.getCode();
+		code =  code.toLowerCase();
+		String Incode = jt_code.getText();
+		Incode = Incode.toLowerCase();
+		if(code .equals(Incode)) {
 			return true;
 		}else 
 			return false;
